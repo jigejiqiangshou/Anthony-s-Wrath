@@ -1,3 +1,9 @@
-[submodule "specs"]
+﻿[submodule "specs"]
 	path = specs
-	url = ../specs
+	url = C:/Users/Zhaoji/Desktop/杀戮尖塔mod-specs.git
+[submodule "memory"]
+	path = memory
+	url = C:/Users/Zhaoji/Desktop/杀戮尖塔mod-memory.git
+[submodule "src"]
+	path = src
+	url = C:/Users/Zhaoji/Desktop/杀戮尖塔mod-src.git

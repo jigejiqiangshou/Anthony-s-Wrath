@@ -1,0 +1,15 @@
+## Agent memory
+
+- Use skill `agent-dev-memory` for cold start, handoff, and progress save.
+- `state_root`: `memory/` (change if needed).
+- Spec location: `.speckit/constitution.md`；各功能的 `specs/<NNN>-<slug>/{spec,plan,tasks}.md`（`specs/` 是一个子模块挂载点）。Direction, roadmap, and task breakdown belong there — **not** in memory.
+- Hot state: `state_root/state.json` — valid JSON, required fields `schema`, `updated`, `focus`, `blockers`, `next`, `artifacts`, `decisions`; empty arrays mean "none". Optional `memoryStores` declares the two library indices when `state_root` is relocated.
+- Fact library: `state_root/facts/INDEX.json` + one Markdown body per entry. Query the index first, never the bodies. A `verified` fact needs a stated method; at most 10 entries may carry `coldStart: true`.
+- Dead-end library: `state_root/deadends/INDEX.json` + one Markdown body per entry. Every entry needs a failure `reason` and a `reopenIf` condition. Query the index before ruling a route out.
+- Writing split: `state.json` and `log/` are session-driven (write at every checkpoint trigger); `facts/` and `deadends/` are event-driven (write the moment a verification or a failed attempt happens).
+- Only the main agent writes memory. Sub-agents keep their own memory or hand proposed entries to the main agent at handoff.
+- Legacy `STATE.md` / `DEV_STATE.md` under `state_root`: read it, migrate into `state.json`, and delete the old file in the same handoff — never keep both.
+- Decision details and running record: append under `memory/log/` as Markdown (include the reasoning behind each artifact); do not bloat hot state.
+- Artifacts stay in the project tree (or paths declared here); memory stores path references only, not file bodies.
+- On session end, task switch, or before compaction: update hot state and append a log entry; use Git for version backup—do not invent a second backup tool.
+- Full procedure: installed skill `agent-dev-memory` (`SKILL.md` + `references/`).
