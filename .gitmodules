@@ -1,9 +1,9 @@
-﻿[submodule "specs"]
+[submodule "specs"]
 	path = specs
-	url = C:/Users/Zhaoji/Desktop/杀戮尖塔mod-specs.git
+	url = https://github.com/jigejiqiangshou/Anthony-s-Wrath-spec.git
 [submodule "memory"]
 	path = memory
-	url = C:/Users/Zhaoji/Desktop/杀戮尖塔mod-memory.git
+	url = https://github.com/jigejiqiangshou/Anthony-s-Wrath-memory.git
 [submodule "src"]
 	path = src
-	url = C:/Users/Zhaoji/Desktop/杀戮尖塔mod-src.git
+	url = https://github.com/jigejiqiangshou/Anthony-s-Wrath-src.git
