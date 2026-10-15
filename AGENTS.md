@@ -7,6 +7,7 @@
 - Fact library: `state_root/facts/INDEX.json` + one Markdown body per entry. Query the index first, never the bodies. A `verified` fact needs a stated method; at most 10 entries may carry `coldStart: true`.
 - Dead-end library: `state_root/deadends/INDEX.json` + one Markdown body per entry. Every entry needs a failure `reason` and a `reopenIf` condition. Query the index before ruling a route out.
 - Writing split: `state.json` and `log/` are session-driven (write at every checkpoint trigger); `facts/` and `deadends/` are event-driven (write the moment a verification or a failed attempt happens).
+- 本项目的验证记录分三级:可复现的**流程**写在 `specs/` 的 plan 里,过程**记录**追加到 `memory/log/`,只有经得起复用的**结论**才升入 `memory/facts/`(严入)。判定标准见 `memory/README.md`。
 - Only the main agent writes memory. Sub-agents keep their own memory or hand proposed entries to the main agent at handoff.
 - Legacy `STATE.md` / `DEV_STATE.md` under `state_root`: read it, migrate into `state.json`, and delete the old file in the same handoff — never keep both.
 - Decision details and running record: append under `memory/log/` as Markdown (include the reasoning behind each artifact); do not bloat hot state.
