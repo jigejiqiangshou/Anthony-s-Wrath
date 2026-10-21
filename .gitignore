@@ -65,9 +65,7 @@ bin/
 out/
 *.class
 *.jar
-!gradle/wrapper/gradle-wrapper.jar
 .gradle/
-!gradle-wrapper.jar
 hs_err_pid*
 replay_pid*
 
