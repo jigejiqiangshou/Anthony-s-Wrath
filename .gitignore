@@ -1,6 +1,5 @@
 # AI agent tooling (local only)
 .dsh/
-.speckit/cache/
 
 # OS generated files
 .DS_Store
