@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>anthonyswrath</groupId>
+  <artifactId>anthonys-wrath</artifactId>
+  <version>0.1.0</version>
+  <packaging>jar</packaging>
+
+  <name>Anthony's Wrath</name>
+  <description>Negative custom-mode option: an unremovable curse card that always sits at the bottom of the draw pile and ends the run when drawn.</description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+
+    <!-- 版本唯一事实来源（宪法引言）：顶层 pom.xml 的 <properties>。 -->
+    <modId>anthonyswrath</modId>
+    <javaPackage>anthonyswrath</javaPackage>
+    <sts.version>12-18-2022</sts.version>
+    <mts.version>3.30.3</mts.version>
+    <basemod.version>5.56.0</basemod.version>
+    <stslib.version>2.12.0</stslib.version>
+  </properties>
+
+  <dependencies>
+    <!--
+      平台产物（游戏本体 / ModTheSpire）：仅以 system scope 参与编译，不打包、不计入第三方依赖边界。
+    -->
+    <dependency>
+      <groupId>com.megacrit.cardcrawl</groupId>
+      <artifactId>desktop</artifactId>
+      <version>${sts.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/libs/desktop-1.0.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>com.evacipated.cardcrawl</groupId>
+      <artifactId>modthespire</artifactId>
+      <version>${mts.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/libs/ModTheSpire.jar</systemPath>
+    </dependency>
+
+    <!--
+      仅有的两个第三方依赖（宪法一）：BaseMod / StSLib，只参与编译、不打包。
+    -->
+    <dependency>
+      <groupId>basemod</groupId>
+      <artifactId>basemod</artifactId>
+      <version>${basemod.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/libs/BaseMod.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>stslib</groupId>
+      <artifactId>stslib</artifactId>
+      <version>${stslib.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/libs/StSLib.jar</systemPath>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <!-- 源码与资源位于 src/ 子模块，顶层 pom 显式指向（宪法八）。 -->
+    <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>${project.basedir}/src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>ModTheSpire.json</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>${project.basedir}/src/main/resources</directory>
+        <filtering>false</filtering>
+        <excludes>
+          <exclude>ModTheSpire.json</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <finalName>${modId}</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.2.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.2</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>
