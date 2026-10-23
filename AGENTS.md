@@ -2,7 +2,7 @@
 
 - Use skill `agent-dev-memory` for cold start, handoff, and progress save.
 - `state_root`: `memory/` (change if needed).
-- Spec location: `.speckit/constitution.md`；各功能的 `specs/<NNN>-<slug>/{spec,plan,tasks}.md`（`specs/` 是一个子模块挂载点）。Direction, roadmap, and task breakdown belong there — **not** in memory.
+- Spec location: 旧体系已冻结退场——`.speckit/` 与 `specs/` 的旧方言只读、不再维护；迁移方案与执行步骤见 `memory/log/010-20261023-speckit-migration.md`。Direction, roadmap, and task breakdown belong to the spec layer — **not** in memory.
 - Hot state: `state_root/state.json` — valid JSON, required fields `schema`, `updated`, `focus`, `blockers`, `next`, `artifacts`, `decisions`; empty arrays mean "none". Optional `memoryStores` declares the two library indices when `state_root` is relocated.
 - Fact library: `state_root/facts/INDEX.json` + one Markdown body per entry. Query the index first, never the bodies. A `verified` fact needs a stated method; at most 10 entries may carry `coldStart: true`.
 - Dead-end library: `state_root/deadends/INDEX.json` + one Markdown body per entry. Every entry needs a failure `reason` and a `reopenIf` condition. Query the index before ruling a route out.
